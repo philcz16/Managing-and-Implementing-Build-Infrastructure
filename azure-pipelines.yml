@@ -40,3 +40,13 @@ steps:
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'Visual Studio Enterprise Subscription (a3c041da-fe8c-4192-a4c8-182eb826911b)'
+    subscriptionId: 'a3c041da-fe8c-4192-a4c8-182eb826911b'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'webapp-RG'
+    location: 'North Europe'
+    templateLocation: 'Linked artifact'
+    deploymentMode: 'Incremental'
